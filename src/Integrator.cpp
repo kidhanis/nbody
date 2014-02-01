@@ -5,8 +5,9 @@
 
 namespace nbody{
 	
-	void Integrator::RKIntegration(Body & _nBodies, float dt, size_t nBodies){
+	void Integrator::RKIntegration(Body & _body, float dt, size_t _nBodies){
 		for(size_t f = 0; f < _nBodies; f++){
+			Vector3f k1v, k2v, k3v, k4v, k1r, k2r, k3r, k4r, v, r;
 			v = _body[f].velocity();
 			r = _body[f].position();
 

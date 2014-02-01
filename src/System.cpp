@@ -31,7 +31,7 @@ namespace nbody {
 
   void System::update(float dt) {
 	  computeGravitation();
-	  Integrator::RKIntegration(& _nBodies, dt, nBodies);
+	  Integrator::RKIntegration(&_body, dt, _nBodies);
   }
 
   void System::readState( std::istream &input ) {

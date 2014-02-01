@@ -1,3 +1,6 @@
+#ifndef _NBODY_INTEGRATOR_H
+#define _NBODY_INTEGRATOR_H
+
 #include <nbody/Vector3.h>
 #include <nbody/Body.h>
 
