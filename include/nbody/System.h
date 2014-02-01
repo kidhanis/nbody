@@ -3,6 +3,7 @@
 
 #include <nbody/Vector3.h>
 #include <nbody/Body.h>
+#include <nbody/Integrator.h>
 
 #include <iosfwd>
 #include <string>
@@ -10,6 +11,7 @@
 namespace nbody {
 
   class System {
+    nBody::Integrator _integrator;
     size_t _nBodies;
     Body *_body;
     float _softFactor = 1e-9f;
@@ -18,13 +20,12 @@ namespace nbody {
     System( const System &sys ) = delete;
     System& operator=( const System &sys ) = delete;
   public:
-    System( size_t N ) : _nBodies{N}, _body{ new Body[N] } { initRandomState(); }
-    System( std::istream &input ) : _nBodies{}, _body{nullptr} { readState( input ); }
-    System( std::string filename ) : _nBodies{}, _body{nullptr} { readState( filename ); }
+    System( size_t N ) : _integrator{}, _nBodies{N}, _body{ new Body[N] } { initRandomState(); }
+    System( std::istream &input ) : _integrator{}, _nBodies{}, _body{nullptr} { readState( input ); }
+    System( std::string filename ) : _integrator{}, _nBodies{}, _body{nullptr} { readState( filename ); }
     ~System() { delete [] _body; }
     void interactBodies( size_t i, size_t j, float softFactor, Vector3f &acc ) const;
     void computeGravitation();
-    void integrateSystem( float dt );
     void readState( std::istream &input );
     void readState( std::string filename );
     void writeState( std::ostream &output ) const;
