@@ -1,11 +1,12 @@
 #include <nbody/Integrator.h>
 #include <nbody/Vector3.h>
 #include <nbody/Body.h>
+#include <nbody/constants.h>
 
 
 namespace nbody{
 	
-	void Integrator::RKIntegration(Body & _body, float dt, size_t _nBodies){
+	void Integrator::RKIntegration(float dt){
 		for(size_t f = 0; f < _nBodies; f++){
 			Vector3f k1v, k2v, k3v, k4v, k1r, k2r, k3r, k4r, v, r;
 			v = _body[f].velocity();
@@ -27,7 +28,7 @@ namespace nbody{
 	}
 
 
-	Vector3f System::grav(const Vector3f x, size_t i){
+	Vector3f Integrator::grav(const Vector3f x, size_t i){
 		Vector3f forces{ 0.0f, 0.0f, 0.0f };
 	 	for (size_t j = 0; j < _nBodies; ++j){
 			if (i != j){

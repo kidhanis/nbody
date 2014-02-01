@@ -7,11 +7,16 @@
 namespace nbody{
 
 	class Integrator{
+		Body* _body;
+		size_t _nBodies;
+		float _softFactor;
+		Integrator(const Integrator &integ) = delete;
+		Integrator& operator=(const Integrator &integ) = delete;
+
 	public:
-		Integrator(){}
-		Integrator( const Integrator &integ ) = delete;
+		Integrator(Body* & body, size_t nBodies, float softFactor) : _body{ body }, _nBodies{ nBodies }, _softFactor{ softFactor }{}
 		~Integrator() {}
-		void RKIntegration(Body & _nBodies, float dt, size_t nBodies);
+		void RKIntegration( float dt);
 		Vector3f grav(const Vector3f x, size_t i);
 	};
 

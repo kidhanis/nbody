@@ -30,8 +30,11 @@ namespace nbody {
   }
 
   void System::update(float dt) {
+	  if (_integrator == nullptr){
+		  _integrator = new Integrator(_body, _nBodies, _softFactor);
+	  }
 	  computeGravitation();
-	  _integrator::RKIntegration(&_body, dt, _nBodies);
+	  _integrator->RKIntegration(dt);
   }
 
   void System::readState( std::istream &input ) {
