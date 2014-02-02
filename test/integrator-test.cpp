@@ -11,9 +11,9 @@ TEST( integrator-test, RKIntegration_singleBody){
 	size_t nBodies = 1;
 	
 	Body * bodies = new Body[nBodies];
-	Vector3f positionA = new Vector3f{0,0,0};
-	Vector3f velocityA = new Vector3f{1,0,0};
-	Vector3f forceA = new Vector3f{0,0,0};
+	Vector3f positionA{0f,0f,0f};
+	Vector3f velocityA{1f,0f,0f};
+	Vector3f forceA{0f,0f,0f};
 	float massA = 10f;
 	bodies[0] = new Body{positionA, velocityA, forceA, massA};
 	
@@ -39,9 +39,9 @@ TEST( integrator-test, simpleIntegration_singleBody){
 	size_t nBodies = 1;
 	
 	Body * bodies = new Body[nBodies];
-	Vector3f positionA = new Vector3f{0,0,0};
-	Vector3f velocityA = new Vector3f{1,0,0};
-	Vector3f forceA = new Vector3f{0,0,0};
+	Vector3f positionA{0f,0f,0f};
+	Vector3f velocityA{1f,0f,0f};
+	Vector3f forceA{0f,0f,0f};
 	float massA = 10f;
 	bodies[0] = new Body{positionA, velocityA, forceA, massA};
 
@@ -70,15 +70,15 @@ TEST( integrator-test, RKIntegration_twoBodies){
 	size_t nBodies = 2;
 	
 	Body * bodies = new Body[nBodies];
-	Vector3f positionA = new Vector3f{0,0,0};
-	Vector3f velocityA = new Vector3f{0,0,0};
-	Vector3f forceA = new Vector3f{0,0,0};
+	Vector3f positionA{0f,0f,0f};
+	Vector3f velocityA{0f,0f,0f};
+	Vector3f forceA{0f,0f,0f};
 	float massA = 10f;
 	bodies[0] = new Body{positionA, velocityA, forceA, massA};
 
-	Vector3f positionB = new Vector3f{10,0,0};
-	Vector3f velocityB = new Vector3f{0,0,0};
-	Vector3f forceB = new Vector3f{0,0,0};
+	Vector3f positionB{10f,0f,0f};
+	Vector3f velocityB{0f,0f,0f};
+	Vector3f forceB{0f,0f,0f};
 	float massB = 10f;
 	bodies[1] = new Body{positionB, velocityB, forceB, massB};
 
@@ -119,15 +119,15 @@ TEST( integrator-test, simpleIntegration_twoBodies){
 	
 
 	Body * bodies = new Body[nBodies];
-	Vector3f positionA = new Vector3f{0,0,0};
-	Vector3f velocityA = new Vector3f{0,0,0};
-	Vector3f forceA = new Vector3f{0,0,0};
+	Vector3f positionA{0f,0f,0f};
+	Vector3f velocityA{0f,0f,0f};
+	Vector3f forceA{0f,0f,0f};
 	float massA = 10f;
 	bodies[0] = new Body{positionA, velocityA, forceA, massA};
 
-	Vector3f positionB = new Vector3f{10,0,0};
-	Vector3f velocityB = new Vector3f{0,0,0};
-	Vector3f forceB = new Vector3f{0,0,0};
+	Vector3f positionB{10f,0f,0f};
+	Vector3f velocityB{0f,0f,0f};
+	Vector3f forceB{0f,0f,0f};
 	float massB = 10f;
 	bodies[1] = new Body{positionB, velocityB, forceB, massB};
 
