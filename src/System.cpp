@@ -29,12 +29,13 @@ namespace nbody {
     }
   }
 
-  void System::update(float dt) {
+  void System::update(int nSteps, float dt, float * all, int evo, int step) {
+
 	  if (_integrator == nullptr){
-		  _integrator = new Integrator(_body, _nBodies, _softFactor, _dampingFactor);
+		  _integrator = new Integrator(_body, _nBodies, _softFactor, _dampingFactor, all, nSteps);
 	  }
 	  computeGravitation();
-	  _integrator->integrateSystem(dt, nbody::RUNGE_KUTTA);
+	  _integrator->integrateSystem(dt,	RUNGE_KUTTA, evo, step);
   }
 
   void System::readState( std::istream &input ) {
@@ -43,9 +44,9 @@ namespace nbody {
       throw std::runtime_error( "Too many input bodies" );
     }
     _body = new Body[_nBodies];
-    for( size_t i = 0; i < _nBodies; ++i ) {
-      input >> _body[i];
-    }
+	for (size_t i = 0; i < _nBodies; ++i) {
+		input >> _body[i];
+	}
   }
 
   void System::writeState( std::ostream &output ) const {

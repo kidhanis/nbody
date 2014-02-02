@@ -16,8 +16,8 @@ namespace nbody {
     std::string generateName();
   public:
     Simulation() : _system{nullptr}, _name{ generateName() } {}
-    Simulation( std::istream &input ) : _system{new System(input)}, _name{ generateName() } {}
-    void evolveSystem( int nSteps, float dt );
+	Simulation(std::istream &input) : _system{ new System(input) }, _name{ generateName() } {}
+    void evolveSystem( int nSteps, float dt , float*& all, int evo);
     void loadRun( std::istream &input );
     void saveRun() const;
   };

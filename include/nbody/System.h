@@ -24,7 +24,6 @@ namespace nbody {
     System( std::istream &input ) :  _nBodies{}, _body{nullptr} { readState( input ); }
     System( std::string filename ) :  _nBodies{}, _body{nullptr} { readState( filename ); }
 	~System() { delete[] _body; delete _integrator; }
-	float getSoftening(){ return _softFactor; }
     void interactBodies( size_t i, size_t j, float softFactor, Vector3f &acc ) const;
     void computeGravitation();
     void readState( std::istream &input );
@@ -32,7 +31,7 @@ namespace nbody {
     void writeState( std::ostream &output ) const;
     void writeState( std::string filename ) const;
     void initRandomState();
-    void update( float dt );
+    void update( int nSteps, float dt, float*all , int evo, int step);
     void setSoftening( float soft ) { _softFactor = soft; }
     void setDamping( float damp ) { _dampingFactor = damp; }
   };

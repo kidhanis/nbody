@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <string>
 #include <fstream>
+#include <iostream>
 
 namespace nbody {
 
@@ -16,7 +17,7 @@ namespace nbody {
     timeinfo.tm_year = 114;   // year: 2014
     timeinfo.tm_mon = 0;      // month: january
     timeinfo.tm_mday = 27;     // day: 27th
-    std::time_t tt = std::mktime( &timeinfo );
+    time_t tt = mktime( &timeinfo );
 
     system_clock::time_point tp = system_clock::from_time_t( tt );
     system_clock::duration d = system_clock::now() - tp;
@@ -32,10 +33,10 @@ namespace nbody {
     }
   }
 
-  void Simulation::evolveSystem( int nSteps, float dt ) {
+  void Simulation::evolveSystem( int nSteps, float dt, float*&all, int evo ) {
     if( _system != nullptr ) {
       for( int step = 0; step < nSteps; ++step ) {
-        _system->update( dt );
+        _system->update(nSteps, dt, all, evo, step);
       }
     } else {
       throw std::runtime_error( "Tried to evolve simulation with no system!" );
@@ -43,7 +44,7 @@ namespace nbody {
   }
 
   void Simulation::saveRun() const {
-    std::ofstream output{ _name };
+	std::ofstream output{ _name, std::ofstream::app };
     _system->writeState( output );
   }
 
