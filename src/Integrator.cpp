@@ -6,6 +6,22 @@
 
 namespace nbody{
 	
+	void Integrator::basicIntegration(float dt) {
+		Vector3f r, v, a;
+		for (size_t i = 0; i < _nBodies; ++i) {
+			r = _body[i].position();
+			v = _body[i].velocity();
+			a = _body[i].force();
+
+			v = v + (a * dt);
+			v = v * _dampingFactor;
+			r = r + v * dt;
+
+			_body[i].position() = r;
+			_body[i].velocity() = v;
+		}
+	}
+
 	void Integrator::RKIntegration(float dt){
 		for(size_t f = 0; f < _nBodies; f++){
 			Vector3f k1v, k2v, k3v, k4v, k1r, k2r, k3r, k4r, v, r;
@@ -27,7 +43,6 @@ namespace nbody{
 		}
 	}
 
-
 	Vector3f Integrator::grav(const Vector3f x, size_t i){
 		Vector3f forces{ 0.0f, 0.0f, 0.0f };
 	 	for (size_t j = 0; j < _nBodies; ++j){
@@ -42,10 +57,12 @@ namespace nbody{
 		return forces;
 	}
 
-
-
-
-
-
-
+	void Integrator::integrateSystem(float dt, Mode mode){
+		if (mode == Mode::RUNGE_KUTTA){
+			Integrator::RKIntegration(dt);
+		}
+		else{
+			Integrator::basicIntegration( dt);
+		}
+	}
 } // namespace nbody

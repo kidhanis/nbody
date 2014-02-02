@@ -31,10 +31,10 @@ namespace nbody {
 
   void System::update(float dt) {
 	  if (_integrator == nullptr){
-		  _integrator = new Integrator(_body, _nBodies, _softFactor);
+		  _integrator = new Integrator(_body, _nBodies, _softFactor, _dampingFactor);
 	  }
 	  computeGravitation();
-	  _integrator->RKIntegration(dt);
+	  _integrator->integrateSystem(dt, nbody::RUNGE_KUTTA);
   }
 
   void System::readState( std::istream &input ) {

@@ -23,7 +23,7 @@ namespace nbody {
     System( size_t N ) :  _nBodies{N}, _body{ new Body[N] } { initRandomState(); }
     System( std::istream &input ) :  _nBodies{}, _body{nullptr} { readState( input ); }
     System( std::string filename ) :  _nBodies{}, _body{nullptr} { readState( filename ); }
-    ~System() { delete [] _body; }
+	~System() { delete[] _body; delete _integrator; }
 	float getSoftening(){ return _softFactor; }
     void interactBodies( size_t i, size_t j, float softFactor, Vector3f &acc ) const;
     void computeGravitation();
