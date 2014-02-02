@@ -18,7 +18,7 @@ TEST( integrator-test, RKIntegration_singleBody){
 	bodies[0] = new Body{positionA, velocityA, forceA, massA};
 	
 	auto integrator = Integrator(bodies, nBodies, softFactor, dampingFactor);
-	auto integrator -> integrateSystem(dt, nbody::RUNGE_KUTTA);
+	auto integrator -> integrateSystem(1000, nbody::RUNGE_KUTTA);
 
 	ASSERT_FLOAT_EQ(bodies[0].position().x(), 1f);
 	ASSERT_FLOAT_EQ(bodies[0].position().y(), 0f);
@@ -48,7 +48,7 @@ TEST( integrator-test, simpleIntegration_singleBody){
 
 
 	auto integrator = Integrator(bodies, nBodies, softFactor, dampingFactor);
-	auto integrator -> integrateSystem(dt, nbody::SIMPLE);
+	auto integrator -> integrateSystem(1000, nbody::SIMPLE);
 
 	ASSERT_FLOAT_EQ(bodies[0].position().x(), 1f);
 	ASSERT_FLOAT_EQ(bodies[0].position().y(), 0f);
@@ -86,7 +86,7 @@ TEST( integrator-test, RKIntegration_twoBodies){
 
 
 	auto integrator = Integrator(bodies, nBodies, softFactor, dampingFactor);
-	auto integrator -> integrateSystem(dt, nbody::RUNGE_KUTTA);
+	auto integrator -> integrateSystem(1000, nbody::RUNGE_KUTTA);
 
 	ASSERT_FLOAT_EQ(bodies[0].position().x(), 0f);
 	ASSERT_FLOAT_EQ(bodies[0].position().y(), 0f);
@@ -135,7 +135,7 @@ TEST( integrator-test, simpleIntegration_twoBodies){
 
 
 	auto integrator = Integrator(bodies, nBodies, softFactor, dampingFactor);
-	auto integrator -> integrateSystem(dt, nbody::SIMPLE);
+	auto integrator -> integrateSystem(1000, nbody::SIMPLE);
 
 	ASSERT_FLOAT_EQ(bodies[0].position().x(), 0f);
 	ASSERT_FLOAT_EQ(bodies[0].position().y(), 0f);
